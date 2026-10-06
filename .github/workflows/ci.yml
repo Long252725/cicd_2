@@ -1,11 +1,11 @@
-# name: Enterprise DevSecOps Pipeline
+name: Enterprise DevSecOps Pipeline
 
-# on:
-#   pull_request:
-#     branches: [ "main" ]
+on:
+  pull_request:
+    branches: [ "main" ]
 
-# jobs:
-#   # TẦNG 1: QUÉT MẬT KHẨU
+jobs:
+  # TẦNG 1: QUÉT MẬT KHẨU
   security-scan:
     name: Gitleaks
     runs-on: ubuntu-latest
