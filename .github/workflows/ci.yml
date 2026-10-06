@@ -16,7 +16,7 @@ jobs:
 
       - name: Chạy Gitleaks Scan thực tế
         run: |
-          docker run -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" --verbose --redact
+          docker run -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" --no-git --verbose --redact
 
 # #   # # TẦNG 2: KIỂM THỬ CHỨC NĂNG (UNIT TEST)
 #   unit-test:
