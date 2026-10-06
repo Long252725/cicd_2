@@ -22,18 +22,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 # #   # # TẦNG 2: KIỂM THỬ CHỨC NĂNG (UNIT TEST)
-#   unit-test:
-#     name: Vitest
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: actions/setup-node@v4
-#         with:
-#           node-version: '20'
-#       - name: Cài đặt thư viện
-#         run: npm ci
-#       - name: Chạy Unit Test
-#         run: npm test
+  unit-test:
+    name: Vitest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Cài đặt thư viện
+        run: npm ci
+      - name: Chạy Unit Test
+        run: npm test
 # #   # # TẦNG 3: QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
 #   sast-codeql:
 #     name: CodeQL
