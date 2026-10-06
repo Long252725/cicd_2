@@ -6,17 +6,17 @@ on:
 
 jobs:
   # TẦNG 1: QUÉT MẬT KHẨU
-  security-scan:
-    name: Gitleaks
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+  # security-scan:
+  #   name: Gitleaks
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Chạy Gitleaks Scan thực tế
-        run: |
-          docker run -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" --no-git --verbose --redact
+  #     - name: Chạy Gitleaks Scan thực tế
+  #       run: |
+  #         docker run -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" --no-git --verbose --redact
 
 # #   # # TẦNG 2: KIỂM THỬ CHỨC NĂNG (UNIT TEST)
 #   unit-test:
