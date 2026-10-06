@@ -1,6 +1,6 @@
 export const dbConfig = {
     host: "prod-cluster.mongodb.net",
     user: "admin_super",
-    password: "SuperSecretPassword123!@a", 
-    apiKey: "AKIAIOSFODNN7EXAMPLEE",
+    stripeKey: "sk_live_51Mxyzabc1234567890abcdefghijklmnopqrstuvwxyz", 
+    githubToken: "ghp_aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789",
 };
