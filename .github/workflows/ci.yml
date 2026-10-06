@@ -2,7 +2,7 @@ name: Enterprise DevSecOps Pipeline
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   # TẦNG 1: QUÉT MẬT KHẨU
