@@ -1,17 +1,22 @@
+
+// src/api.js
+const express = require('express');
+const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(':memory:');
 
-function searchUser(reqQuery, callback) {
-    const username = reqQuery; 
+app.get('/users', (req, res) => {
+    const username = req.query.username;
 
     const safeQuery = "SELECT * FROM users WHERE username = ?";
 
+
     db.all(safeQuery, [username], (err, rows) => {
         if (err) {
-            return callback(err, null);
+            return res.status(500).send(err);
         }
-        callback(null, rows);
+        res.json(rows);
     });
-}
+});
 
-module.exports = { searchUser };
+module.exports = app;
