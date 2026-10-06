@@ -31,26 +31,24 @@ jobs:
         run: npm ci
       - name: Chạy Unit Test
         run: npm test
-
-  # # TẦNG 3: QUÉT LỖ HỔNG THƯ VIỆN (SCA)
+  # # TẦNG 3: QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
+  sast-codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+   # TẦNG 4: QUÉT LỖ HỔNG THƯ VIỆN (SCA)
   # dependency-audit:
   #   name: NPM Audit
   #   runs-on: ubuntu-latest
   #   steps:
   #     - uses: actions/checkout@v4
   #     - run: npm audit --audit-level=critical
-
-  # # TẦNG 4: QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
-  # sast-codeql:
-  #   name: CodeQL
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     security-events: write
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: Initialize CodeQL
-  #       uses: github/codeql-action/init@v3
-  #       with:
-  #         languages: javascript
-  #     - name: Perform CodeQL Analysis
-  #       uses: github/codeql-action/analyze@v3
