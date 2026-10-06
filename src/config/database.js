@@ -1,5 +1,16 @@
-// export const dbConfig = {
-//     host: "prod-cluster.mongodb.net",
-//     user: "admin_super",
-// };
-// export const testToken = "xoxb-123456789012-1234567890123-4XxXyYzZ1234567890abcdef";
+// src/config/payment.js
+
+export const paymentConfig = {
+    gateway: "AWS_Payment_Services",
+    region: "ap-southeast-1",
+    
+    // 🔴 LỖI CHẾT NGƯỜI: Dev A để lộ AWS Access Key thật của công ty.
+    // Gitleaks được lập trình sẵn để nhận diện chuỗi bắt đầu bằng "AKIA..."
+    aws_access_key_id: "AKIAIOSFODNN7EXAMPLE",
+    
+    // Chữ ký bí mật (Secret Token)
+    aws_secret_access_key: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+
+    // Lộ mật khẩu kết nối Database
+    db_connection: "mongodb+srv://admin:SuperSecretPass123!@cluster0.mongodb.net"
+};
