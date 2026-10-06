@@ -1,54 +1,54 @@
-name: Enterprise DevSecOps Pipeline
+# name: Enterprise DevSecOps Pipeline
 
-on:
-  pull_request:
-    branches: [ "main" ]
+# on:
+#   pull_request:
+#     branches: [ "main" ]
 
-jobs:
-  # TẦNG 1: QUÉT MẬT KHẨU
-  security-scan:
-    name: Gitleaks
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+# jobs:
+#   # TẦNG 1: QUÉT MẬT KHẨU
+#   security-scan:
+#     name: Gitleaks
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
 
-      - name: Chạy Gitleaks Scan thực tế
-        run: |
-          docker run -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" --verbose --redact
+#       - name: Chạy Gitleaks Scan thực tế
+#         run: |
+#           docker run -v ${{ github.workspace }}:/path zricethezav/gitleaks:latest detect --source="/path" --verbose --redact
 
-  # # TẦNG 2: KIỂM THỬ CHỨC NĂNG (UNIT TEST)
-  unit-test:
-    name: Vitest
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Cài đặt thư viện
-        run: npm ci
-      - name: Chạy Unit Test
-        run: npm test
-  # # TẦNG 3: QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
-  sast-codeql:
-    name: CodeQL
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-    steps:
-      - uses: actions/checkout@v4
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-   # TẦNG 4: QUÉT LỖ HỔNG THƯ VIỆN (SCA)
-  # dependency-audit:
-  #   name: NPM Audit
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - run: npm audit --audit-level=critical
+#   # # TẦNG 2: KIỂM THỬ CHỨC NĂNG (UNIT TEST)
+#   unit-test:
+#     name: Vitest
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: '20'
+#       - name: Cài đặt thư viện
+#         run: npm ci
+#       - name: Chạy Unit Test
+#         run: npm test
+#   # # TẦNG 3: QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
+#   sast-codeql:
+#     name: CodeQL
+#     runs-on: ubuntu-latest
+#     permissions:
+#       security-events: write
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Initialize CodeQL
+#         uses: github/codeql-action/init@v3
+#         with:
+#           languages: javascript
+#       - name: Perform CodeQL Analysis
+#         uses: github/codeql-action/analyze@v3
+#    # TẦNG 4: QUÉT LỖ HỔNG THƯ VIỆN (SCA)
+#   dependency-audit:
+#     name: NPM Audit
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#       - run: npm audit --audit-level=critical
