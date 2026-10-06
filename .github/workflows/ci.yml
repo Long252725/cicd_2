@@ -31,7 +31,7 @@ jobs:
 #         run: npm ci
 #       - name: Chạy Unit Test
 #         run: npm test
-#   # # TẦNG 3: QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
+# TẦNG 3: QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
   sast-codeql:
     name: CodeQL
     runs-on: ubuntu-latest
