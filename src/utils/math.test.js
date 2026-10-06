@@ -1,3 +1,5 @@
+// math.test.js
+
 import { calculateTotal } from './math';
 import { describe, it, expect } from 'vitest';
 
