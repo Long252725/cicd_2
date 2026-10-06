@@ -6,32 +6,32 @@ on:
 
 jobs:
   # TẦNG 1: QUÉT MẬT KHẨU
-  # security-scan:
-  #   name: Gitleaks
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         fetch-depth: 0
-          
-  #     - name: Chạy Gitleaks Scan thực tế
-  #       uses: gitleaks/gitleaks-action@v2
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  # # TẦNG 2: KIỂM THỬ CHỨC NĂNG (UNIT TEST)
-  unit-test:
-    name: Vitest
+  security-scan:
+    name: Gitleaks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Cài đặt thư viện
-        run: npm ci
-      - name: Chạy Unit Test
-        run: npm test
+          fetch-depth: 0
+          
+      - name: Chạy Gitleaks Scan thực tế
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # # TẦNG 2: KIỂM THỬ CHỨC NĂNG (UNIT TEST)
+  # unit-test:
+  #   name: Vitest
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20'
+  #     - name: Cài đặt thư viện
+  #       run: npm ci
+  #     - name: Chạy Unit Test
+  #       run: npm test
 
   # # TẦNG 3: QUÉT LỖ HỔNG THƯ VIỆN (SCA)
   # dependency-audit:
@@ -42,16 +42,16 @@ jobs:
   #     - run: npm audit --audit-level=critical
 
   # # TẦNG 4: QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
-  sast-codeql:
-    name: CodeQL
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-    steps:
-      - uses: actions/checkout@v4
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+  # sast-codeql:
+  #   name: CodeQL
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     security-events: write
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Initialize CodeQL
+  #       uses: github/codeql-action/init@v3
+  #       with:
+  #         languages: javascript
+  #     - name: Perform CodeQL Analysis
+  #       uses: github/codeql-action/analyze@v3
