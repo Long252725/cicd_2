@@ -19,19 +19,19 @@ jobs:
       - name: Chạy Unit Test
         run: npm test
 # # QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
-#   sast-codeql:
-#     name: CodeQL
-#     runs-on: ubuntu-latest
-#     permissions:
-#       security-events: write
-#     steps:
-#       - uses: actions/checkout@v4G
-#       - name: Initialize CodeQL
-#         uses: github/codeql-action/init@v3
-#         with:
-#           languages: javascript
-#       - name: Perform CodeQL Analysis
-#         uses: github/codeql-action/analyze@v3
+  sast-codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4G
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
 # # QUÉT MẬT KHẨU
 #   secret-detection:
 #     name: Quét Lộ Mật Khẩu
