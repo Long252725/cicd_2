@@ -1,23 +1,23 @@
-# name: Enterprise DevSecOps Pipeline
+name: Enterprise DevSecOps Pipeline
 
-# on:
-#   pull_request:
-#     branches: [ "main" ]
+on:
+  pull_request:
+    branches: [ "main" ]
 
-# jobs:
+jobs:
 # # KIỂM THỬ CHỨC NĂNG (UNIT TEST)
-#   unit-test:
-#     name: Vitest
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: actions/setup-node@v4
-#         with:
-#           node-version: '20'
-#       - name: Cài đặt thư viện
-#         run: npm ci
-#       - name: Chạy Unit Test
-#         run: npm test
+  unit-test:
+    name: Vitest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Cài đặt thư viện
+        run: npm ci
+      - name: Chạy Unit Test
+        run: npm test
 # # QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
 #   sast-codeql:
 #     name: CodeQL
@@ -25,7 +25,7 @@
 #     permissions:
 #       security-events: write
 #     steps:
-#       - uses: actions/checkout@v4
+#       - uses: actions/checkout@v4G
 #       - name: Initialize CodeQL
 #         uses: github/codeql-action/init@v3
 #         with:
