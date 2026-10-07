@@ -1,55 +1,55 @@
-# name: Enterprise DevSecOps Pipeline
+name: Enterprise DevSecOps Pipeline
 
-# on:
-#   pull_request:
-#     branches: [ "main" ]
+on:
+  pull_request:
+    branches: [ "main" ]
 
-# jobs:
+jobs:
 # # KIỂM THỬ CHỨC NĂNG (UNIT TEST)
-#   unit-test:
-#     name: Vitest
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: actions/setup-node@v4
-#         with:
-#           node-version: '20'
-#       - name: Cài đặt thư viện
-#         run: npm ci
-#       - name: Chạy Unit Test
-#         run: npm test
+  unit-test:
+    name: Vitest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Cài đặt thư viện
+        run: npm ci
+      - name: Chạy Unit Test
+        run: npm test
 # # QUÉT MÃ NGUỒN TĨNH (SAST) - CODEQL
-#   sast-codeql:
-#     name: CodeQL
-#     runs-on: ubuntu-latest
-#     permissions:
-#       security-events: write
-#     steps:
-#       - uses: actions/checkout@v4
-#       - name: Initialize CodeQL
-#         uses: github/codeql-action/init@v3
-#         with:
-#           languages: javascript
-#       - name: Perform CodeQL Analysis
-#         uses: github/codeql-action/analyze@v3
+  sast-codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
 # # QUÉT MẬT KHẨU
-#   secret-detection:
-#     name: Quét Lộ Mật Khẩu
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout mã nguồn
-#         uses: actions/checkout@v4
-#         with:
-#           fetch-depth: 0 
+  secret-detection:
+    name: Quét Lộ Mật Khẩu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mã nguồn
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
 
-#       - name: Chạy Gitleaks Scan
-#         uses: gitleaks/gitleaks-action@v2
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Chạy Gitleaks Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 # # QUÉT LỖ HỔNG THƯ VIỆN (SCA)
-#   dependency-audit:
-#     name: NPM Audit
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - run: npm audit --audit-level=critical
+  dependency-audit:
+    name: NPM Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm audit --audit-level=critical
